@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    
+    <!-- Google tag (gtag.js) para google analytics--> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHF2CTMPBN"></script>
+    <script> window.dataLayer = window.dataLayer || []; 
+             function gtag(){dataLayer.push(arguments);} 
+             gtag('js', new Date()); 
+             
+             gtag('config', 'G-RHF2CTMPBN');
+    </script>
+    
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="scss/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <section class="h-100vh h-custom gradient-custom-2">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                        <div class="card-body p-0">
+                            <form class="user" enctype="multipart/form-data" method="post" id="formId">
+                                <div class="row g-0">
+                                    <div class="col-lg-6">
+                                        <div class="p-5">
+                                            <h3 class="fw-normal mb-5" style="color: #4835d4;">Informacion general</h3>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-4 pb-2">
+    
+                                                        <div class="form-outline">
+                                                            <input type="text" id="exampleFirstName"
+                                                                class="form-control form-control-lg" />
+                                                            <label class="form-label" for="form3Examplev2">Nombre/s</label>
+                                                        </div>
+    
+                                                    </div>
+                                                    <div class="col-md-6 mb-4 pb-2">
+    
+                                                        <div class="form-outline">
+                                                            <input type="text" id="exampleLastName"
+                                                                class="form-control form-control-lg" />
+                                                            <label class="form-label"
+                                                                for="form3Examplev3">Apellido/s</label>
+                                                        </div>
+    
+                                                    </div>
+                                                </div>
+    
+                                                <div class="mb-4">
+                                                    <select class="form-select" aria-label="Default select example"
+                                                        id="exampleSelectGender">
+                                                        <option selected>Genero</option>
+                                                        <option value="Masculino">Masculino</option>
+                                                        <option value="Femenino">Femenino</option>
+                                                        <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+                                                    </select>
+                                                </div>
+    
+                                                <div class="mb-4 pb-2">
+                                                    <div class="form-outline">
+                                                        <input type="email" id="exampleInputEmail"
+                                                            class="form-control form-control-lg" />
+                                                        <label class="form-label" for="form3Examplev4">Email</label>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-4 pb-2 mb-md-0 pb-md-0">
+    
+                                                        <div class="form-outline">
+                                                            <input type="password" id="exampleInputPassword"
+                                                                class="form-control form-control-lg" />
+                                                            <label class="form-label"
+                                                                for="form3Examplev5">Contraseña</label>
+                                                        </div>
+    
+                                                    </div>
+                                                    <div class="col-md-6">
+    
+                                                        <div class="form-outline">
+                                                            <input type="password" id="exampleRepeatPassword"
+                                                                class="form-control form-control-lg" />
+                                                            <label class="form-label" for="form3Examplev5">Repite la
+                                                                contraseña</label>
+                                                        </div>
+    
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 bg-indigo text-white">
+                                        <div class="p-5">
+                                            <h3 class="fw-normal mb-5">Informacion detallada</h3>
+                                            
+                                            <div class="row">
+                                                <div class="col-md-5 mb-4 pb-2">
+    
+                                                    <select class="form-select" aria-label="Default select example"
+                                                        id="exampleSelectPais">
+                                                        <option selected value="Pais">Pais</option>
+    
+                                            <?php
+                                                    include "php/get_solicitudesRegistro.php";
+                                            ?>
+    
+                                            <div class="row">
+                                                <div class="col-md-5 mb-4 pb-2">
+    
+                                                    <label class="form-label text-white">Fotografia</label>
+                                                    <input type="file" class="form-control" id="exampleSelectFoto" accept=".jpg, .png" />
+    
+                                                </div>
+                                                <div class="col-md-7 mb-4 pb-2">
+    
+                                                    <label class="form-label text-white">CV</label>
+                                                    <input type="file" class="form-control" id="exampleSelectCV" accept=".pdf, .docx" />
+    
+                                                </div>
+                                            </div>
+    
+                                            <div class="form-check d-flex justify-content-start mb-4 pb-3">
+                                                <input required class="form-check-input me-3" type="checkbox" value=""
+                                                    id="form2Example3c" />
+                                                <label class="form-check-label text-white" for="form2Example3">
+                                                    Acepto los <a data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="text-white"><u>Terminos y
+                                                            Condiciones</u></a> del sitio
+                                                </label>
+                                            </div>
+    
+                                            <button id="register" type="button" class="btn btn-light btn-lg"
+                                                data-mdb-ripple-color="dark">Registrarse</button>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Terminos y
+                                                            Condiciones</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          
+                <h2>
+                    Términos y Condiciones del Sistema de Membresía de la Red Temática Académica
+                </h2>
+
+               <span>
+                    Estos Términos y Condiciones ("T&C") establecen los acuerdos y condiciones bajo los cuales los usuarios pueden acceder y utilizar el sistema de membresía de la Red Temática Mexicana de Ingeniería de Software ("el Sistema"). Al acceder o utilizar el Sistema, usted acepta cumplir con estos T&C en su totalidad. Si no está de acuerdo con estos términos, le recomendamos que no utilice el Sistema.
+               </span>
+                <p>
+                    
+
+            1. Membresía y Uso del Sistema:
+            1.1. La membresía en la Red Temática Académica es personal e intransferible.
+            1.2. El acceso al Sistema se otorga exclusivamente a miembros registrados.
+            1.3. Los usuarios deben proporcionar información precisa y actualizada durante el proceso de registro.
+                </p>
+                <p>
+                    
+
+            2. Responsabilidad del Usuario:
+            2.1. Los usuarios son responsables de mantener la confidencialidad de sus credenciales de inicio de sesión.
+            2.2. Los usuarios se comprometen a no compartir, vender o transferir sus credenciales a terceros.
+            2.3. Los usuarios aceptan ser responsables de cualquier actividad que ocurra bajo su cuenta.
+                </p>
+                <p>
+                    
+
+            3. Uso Adecuado:
+            3.1. Los usuarios se comprometen a utilizar el Sistema de manera ética y respetuosa.
+            3.2. Los usuarios no deben utilizar el Sistema para difamar, acosar, amenazar o perjudicar a otros usuarios.
+            3.3. Los usuarios no deben cargar, transmitir o distribuir contenido ilegal o inapropiado.
+                </p>
+            
+            4. Propiedad Intelectual:
+            4.1. Todo el contenido proporcionado en el Sistema es propiedad de la Red Temática Mexicana de Ingeniería de Software y está protegido por derechos de autor y otras leyes de propiedad intelectual.
+            4.2. Los usuarios pueden acceder y utilizar el contenido solo para fines académicos y no comerciales.
+            
+            5. Suspensión o Terminación:
+            5.1. La Red Temática Académica se reserva el derecho de suspender o terminar el acceso de un usuario al Sistema si se violan estos T&C.
+            5.2. La suspensión o terminación puede realizarse sin previo aviso.
+            
+            6. Modificaciones de los T&C:
+            6.1. La Red Temática Mexicana de Ingeniería de Software puede actualizar o modificar estos T&C en cualquier momento.
+            6.2. Los usuarios serán notificados de los cambios y se espera que revisen y acepten los nuevos términos.
+            
+            7. Limitación de Responsabilidad:
+            7.1. La Red Temática Mexicana de Ingeniería de Software no se hace responsable de cualquier daño, pérdida o inconveniente derivado del uso del Sistema.
+            
+            8. Ley Aplicable:
+            8.1. Estos T&C están sujetos a las leyes del país en el que opera la Red Temática Mexicana de Ingeniería de Software.
+            
+            Al acceder y utilizar el Sistema de Membresía de la Red Temática Mexicana de Ingeniería de Software, usted confirma que ha leído, comprendido y aceptado estos T&C en su totalidad.
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script defer src="js/register.js"></script>
+
+</body>
+
+</html>

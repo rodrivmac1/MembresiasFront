@@ -1,0 +1,67 @@
+[24-Apr-2023 05:16:30 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=p): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:16:30 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=p): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:16:30 UTC] PHP Warning:  include(): Failed opening 'php/get_solicitudes.php?solicitud=p' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:16:31 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=a): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/aceptadas.php on line 203
+[24-Apr-2023 05:16:31 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=a): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/aceptadas.php on line 203
+[24-Apr-2023 05:16:31 UTC] PHP Warning:  include(): Failed opening 'php/get_solicitudes.php?solicitud=a' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/luminiso/public_html/membresias/aceptadas.php on line 203
+[24-Apr-2023 05:16:44 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=p): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:16:44 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=p): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:16:44 UTC] PHP Warning:  include(): Failed opening 'php/get_solicitudes.php?solicitud=p' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:17:10 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=p): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:17:10 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=p): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:17:10 UTC] PHP Warning:  include(): Failed opening 'php/get_solicitudes.php?solicitud=p' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:17:12 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=a): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/aceptadas.php on line 203
+[24-Apr-2023 05:17:12 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=a): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/aceptadas.php on line 203
+[24-Apr-2023 05:17:12 UTC] PHP Warning:  include(): Failed opening 'php/get_solicitudes.php?solicitud=a' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/luminiso/public_html/membresias/aceptadas.php on line 203
+[24-Apr-2023 05:17:13 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=p): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:17:13 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=p): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:17:13 UTC] PHP Warning:  include(): Failed opening 'php/get_solicitudes.php?solicitud=p' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:17:14 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=p): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:17:14 UTC] PHP Warning:  include(php/get_solicitudes.php?solicitud=p): failed to open stream: No such file or directory in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[24-Apr-2023 05:17:14 UTC] PHP Warning:  include(): Failed opening 'php/get_solicitudes.php?solicitud=p' for inclusion (include_path='.:/opt/alt/php72/usr/share/pear') in /home/luminiso/public_html/membresias/pendientes.php on line 203
+[10-May-2023 01:59:36 UTC] PHP Notice:  Undefined variable: metodo in /home/luminiso/public_html/membresias/php/administrador.php on line 21
+[10-May-2023 02:00:58 UTC] PHP Notice:  Undefined variable: metodo in /home/luminiso/public_html/membresias/php/administrador.php on line 21
+[15-Jun-2023 04:19:24 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/luminiso/public_html/membresias/conect.php on line 9
+[15-Jun-2023 04:19:24 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/luminiso/public_html/membresias/register2.php on line 99
+[15-Jun-2023 04:19:24 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/luminiso/public_html/membresias/register2.php on line 101
+[15-Jun-2023 04:20:33 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/luminiso/public_html/membresias/register2.php on line 101
+[15-Jun-2023 04:20:39 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/luminiso/public_html/membresias/register2.php on line 101
+[15-Jun-2023 04:20:52 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in /home/luminiso/public_html/membresias/register2.php on line 101
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: username in /home/luminiso/public_html/membresias/register2.php on line 108
+[15-Jun-2023 06:23:02 UTC] PHP Notice:  Undefined index: filename in /home/luminiso/public_html/membresias/register2.php on line 111
+[15-Jun-2023 06:41:50 UTC] PHP Parse error:  syntax error, unexpected '"'"' (T_CONSTANT_ENCAPSED_STRING) in /home/luminiso/public_html/membresias/register2.php on line 35
+[26-Jun-2023 01:01:26 UTC] PHP Notice:  Undefined index: usuario in /home/luminiso/public_html/membresias/seguridad.php on line 6
+[26-Jun-2023 01:05:25 UTC] PHP Notice:  Undefined index: usuario in /home/luminiso/public_html/membresias/seguridad.php on line 8
+[26-Jun-2023 01:09:52 UTC] PHP Notice:  Undefined index: usuario in /home/luminiso/public_html/membresias/seguridad.php on line 8
