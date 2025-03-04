@@ -3,7 +3,6 @@
 
 <head>
     
-    
     <!-- Google tag (gtag.js) para google analytics--> 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHF2CTMPBN"></script>
     <script> window.dataLayer = window.dataLayer || []; 
@@ -13,6 +12,7 @@
              gtag('config', 'G-RHF2CTMPBN');
     </script>
     
+    
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +20,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REDMIS</title>
+    <title>REDMIS - Solicitudes pendientes</title>
 
     <!-- Custom styles for this template-->
     <link href="scss/sb-admin-2.css" rel="stylesheet">
@@ -30,16 +30,8 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-            <script src="js/seguridad.js"></script>
-    <style>
-        .info_solicitud_datos-expira {
-            border-bottom: none !important;
-        }
-    </style>
-    
-    <!--Codigo AdSense -->
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356061878274425" crossorigin="anonymous"></script>
-    
+    <script src="js/seguridad.js"></script>
+
 </head>
 
 <body id="page-top">
@@ -51,7 +43,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="perfil_usuario.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -63,23 +55,53 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="perfil_usuario.php">
+                <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Perfil</span></a>
+                    <span>Gestor de Administradores</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="membresia.php">
+            <li class="nav-item">
+                <a class="nav-link" href="pendientes.html">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Membresia</span></a>
+                    <span>Pendientes</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="aceptadas.html">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Aceptadas</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Charts -->
+            <li class="nav-item active">
+                <a class="nav-link" href="rechazadas.html">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Rechazadas</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="membresia_admin.html">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Membresias</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -113,22 +135,17 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Page Heading -->
-                    <section class="info_solicitud">
-                        <h1 class="h3 mb-4 text-gray-800">Informacion de membresia</h1>
-                        <hr>
-                        <article class="info_solicitud_datos">
-                            <div>
-                                <label for="status_solicitud">Estatus de la membresia</label>
-                                <div class="info_solicitud_datos-status">Activo</div>
-                            </div>
-                            <div>
-                                <label for="expira">Vigencia</label>
-                                <label for="fecha_expira" class="info_solicitud_datos-expira"> 15/09/2025</label>
-                            </div>
-                        </article>
-                    </section>
 
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Solicitudes pendientes</h1>
+
+                    <div class="grid-solicitudes-pend" style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; ">
+                        
+                   <!--    <?php
+                            include "php/get_solicitudesR.php";
+                        ?>
+                        --> 
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -140,7 +157,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; Your Website 2020</span>
                     </div>
                 </div>
             </footer>
@@ -157,6 +174,25 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -166,10 +202,7 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-    
-    <!-- Script propios -->
-    <script defer src="js/membresia.js"></script>
+    <script src="js/get_solicitudes.js"></script>
 
 </body>
 

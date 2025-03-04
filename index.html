@@ -47,7 +47,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -59,7 +59,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Gestor de Administradores</span></a>
             </li>
@@ -69,7 +69,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="pendientes.php">
+                <a class="nav-link" href="pendientes.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Pendientes</span></a>
             </li>
@@ -79,7 +79,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="aceptadas.php">
+                <a class="nav-link" href="aceptadas.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Aceptadas</span></a>
             </li>
@@ -89,7 +89,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="rechazadas.php">
+                <a class="nav-link" href="rechazadas.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Rechazadas</span></a>
             </li>
@@ -99,7 +99,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="membresia_admin.php">
+                <a class="nav-link" href="membresia_admin.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Membresia</span></a>
             </li>
@@ -142,7 +142,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Gestor de administradores</h1>
-                    <a href="ag_admin.php" type="button" class="btn btn-info btn-rounded">Agregar un administrador nuevo</a>
+                    <a href="ag_admin.html" type="button" class="btn btn-info btn-rounded">Agregar un administrador nuevo</a>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -162,9 +162,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                                include "php/administrador.php";
-                                        ?>
+                                        <tr>
+                                            <td>Juan Pérez</td>
+                                            <td>UPAEP</td>
+                                            <td>juan.perez@ejemplo.com</td>
+                                            <td>Administrador</td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td>María López</td>
+                                            <td>UPAEP</td>
+                                            <td>maria.lopez@ejemplo.com</td>
+                                            <td>Editor</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

@@ -19,8 +19,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <script src="https://unpkg.com/pdf-lib@1.4.0/dist/pdf-lib.min.js"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+    <!--<script src="https://smtpjs.com/v3/smtp.js"></script>-->
 
     <title>REDMIS - Solicitudes pendientes</title>
+
     <!-- Custom styles for this template-->
     <link href="scss/sb-admin-2.css" rel="stylesheet">
 
@@ -29,7 +33,12 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+
     <script src="js/seguridad.js"></script>
+    
+    <!--Codigo AdSense -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356061878274425" crossorigin="anonymous"></script>
+
 </head>
 
 <body id="page-top">
@@ -41,7 +50,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -53,7 +62,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.php">
+                <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Gestor de solicitudes</span></a>
             </li>
@@ -63,7 +72,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link" href="pendientes.php">
+                <a class="nav-link" href="pendientes.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Pendientes</span></a>
             </li>
@@ -73,7 +82,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="aceptadas.php">
+                <a class="nav-link" href="aceptadas.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Aceptadas</span></a>
             </li>
@@ -83,7 +92,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="rechazadas.php">
+                <a class="nav-link" href="rechazadas.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Rechazadas</span></a>
             </li>
@@ -103,7 +112,6 @@
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
-                <iframe src="" frameborder="0"></iframe>
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
@@ -206,20 +214,51 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <a class="regresar" href="usuario.html">
+                    <a class="regresar" href="pendientes.html">
                         <i class='fas fa-angle-left'></i>
                         <h4 class="">Regresar</h4>
                     </a>
 
-                    <section class="pdf_container">
-                        <article>
-                            <span>Nombre</span>
-                            <span>Apellido</span>
-                        </article>
-                        <footer>
-                            <button type="button" class="btn btn-outline-success">Enviar</button>
-                        </footer>
-                    </section>
+                    <div class="row">
+
+                        <div class="col-lg-12">
+
+                            <!-- Card Persona columna 1-->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h1 class="m-0 font-weight-bold text-primary titulo-nom">Solicitud</h1>
+                                </div>
+                                <div class="card-body info_usuario">
+                                    <div class="p-3 border bg-light nom-comp">Nombre Completo</div>
+                                    <div class="p-3 border bg-light li">Linea de investigacoin</div>
+                                    <div class="p-3 border bg-light genero">Genero </div>
+                                    <select id="select" class="form-select p-3 border bg-light select "
+                                        aria-label="Default select example">
+                                        <option selected>
+                                            Tipo de membresia
+                                        </option>
+                                    </select>
+                                    <div class="p-3 border bg-light pais">Pais</div>
+                                    <a class="p-3 border bg-light cv" id="cv">
+                                        <i class="fa fa-download"></i><span>CV</span>
+                                    </a>
+                                    <div class="p-3 border bg-light estado">Estado</div>
+                                    <div class="p-3 border bg-light email">Email</div>
+                                    <div class="p-3 border bg-light info_usuario-elem uni">Universidad</div>
+                                    <button type="button"
+                                        class="btn btn-success btn-circle btn-lg info_usuario-chek"><i
+                                            class="fas fa-check" id="aceptar"></i></button>
+
+                                    <a class="btn btn-danger btn-circle btn-lg info_usuario-trash">
+                                        <i class="fas fa-trash" id="rechazar"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -282,8 +321,10 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Script propios -->
-    <script src="./js/variables.js"></script>
-    <script src="./js/pdf.js"></script>
+    <script src="js/get_info_solicitud.js"></script>
+    <script src="js/getInfoMembresias.js"></script>
+    <script defer src="js/estatusSolicitud.js"></script>
+
 </body>
 
 </html>

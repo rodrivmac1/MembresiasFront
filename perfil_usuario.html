@@ -1,7 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    
     
     <!-- Google tag (gtag.js) para google analytics--> 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHF2CTMPBN"></script>
@@ -20,7 +22,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REDMIS - Solicitudes pendientes</title>
+    <title>REDMIS</title>
 
     <!-- Custom styles for this template-->
     <link href="scss/sb-admin-2.css" rel="stylesheet">
@@ -30,8 +32,18 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+
     <script src="js/seguridad.js"></script>
 
+    <style>
+        .info_perfil_usuario {
+            width: 90%;
+        }
+    </style>
+    
+    <!--Codigo AdSense -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356061878274425" crossorigin="anonymous"></script>
+    
 </head>
 
 <body id="page-top">
@@ -43,7 +55,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="perfil_usuario.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -54,51 +66,22 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Gestor de Administradores</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="pendientes.php">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pendientes</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="aceptadas.php">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Aceptadas</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Charts -->
             <li class="nav-item active">
-                <a class="nav-link" href="rechazadas.php">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Rechazadas</span></a>
+                <a class="nav-link" href="perfil_usuario.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Perfil</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="membresia_admin.php">
+                <a class="nav-link" href="membresia.html">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Membresias</span></a>
+                    <span>Solicitud</span></a>
             </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -135,18 +118,68 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Solicitudes pendientes</h1>
-
-                    <div class="grid-solicitudes-pend" style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; ">
-                        
-                        <?php
-                            include "php/get_solicitudesR.php";
-                        ?>
-                        
-                    </div>
-
+                    <section class="info_perfil">
+                        <h1 class="h3 mb-4 text-gray-800">Datos de usuario</h1>
+                        <hr>
+                        <article class="info_perfil_usuario">
+                            <div>
+                                <label for="">Nombre/s</label>
+                                <input id="inputNombre" class="statusInput" type="text" value="John" disabled>
+                            </div>
+                            <div class="info_perfil_usuario-img">
+                                <img src="./img/avatar.png" alt="">
+                                <label class="info_perfil_usuario-img-edit show" for="img_upload"><i
+                                        class='fas fa-edit'></i>Editar</label>
+                            </div>
+                            <div>
+                                <label for="">Apellido</label>
+                                <input id="inputApellidos" class="statusInput" type="text" value="Doe" disabled>
+                            </div>
+                            <div>
+                                <label for="">Genero</label>
+                                <input id="inputGenero" class="statusInput" type="text" value="Doe" disabled>
+                            </div>
+                            
+                            <div class="info_perfil_usuario-lugar">
+                                <div>
+                                    <label for="">Pais</label>
+                                    <input id="inputPais" class="statusInput" type="text" value="Doe" disabled>
+                                </div>
+                                <div>
+                                    <label for="">Estado</label>
+                                    <input id="inputEstado" class="statusInput" type="text" value="Doe" disabled>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="">Universidad</label>
+                                <input id="inputUniversidad" class="statusInput" type="text" value="Doe" disabled>
+                                <!-- <select class="statusInput" id="inputUniversidad" disabled>
+                                    <option> Universidad </option>
+                                    <option value="UPAEP" selected>Universidad Popular Autonoma del Estado de Puebla
+                                        (UPAEP)</option>
+                                    <option value="UDLAP">Universidad de las Américas Puebla (UDLAP)</option>
+                                </select> -->
+                            </div>
+                            <div>
+                                <label for="">Linea de invesigacion</label>
+                                <input type="text" value="Ciencias de la información" id="inputLI" class="statusInput" disabled>
+                            </div>
+                            <div>
+                                <label for="">Email</label>
+                                <input type="email" value="johndoe@example.com" id="inputEmail" class="statusInput" disabled>
+                            </div>
+                            <div>
+                                <label for="">Contraseña</label>
+                                <input type="password" value="........" id="inputPassword" class="statusInput" disabled>
+                            </div>
+                        </article>
+                        <a class="info_perfil-btnEditar" type="submit">Editar</a>
+                        <div class="info_perfil-btnsEdit show">
+                            <button class="info_perfil-btnsEdit-aceptar" type="submit">Aceptar</button>
+                            <a class="info_perfil-btnsEdit-cancelar">Cancelar</a>
+                        </div>
+                    </section>
                 </div>
                 <!-- /.container-fluid -->
 
@@ -157,7 +190,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
             </footer>
@@ -202,8 +235,12 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/get_solicitudes.js"></script>
+    <script src="js/sb-admin-2.min.js"></script>
 
+    <!-- Page level plugins -->
+
+    <!-- Page level custom scripts -->
+    <script src="js/edit_user.js?v=1.1"></script>
 </body>
 
 </html>
