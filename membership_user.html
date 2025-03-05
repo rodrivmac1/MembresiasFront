@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-
-<!-- Google tag (gtag.js) para google analytics--> 
+    
+    
+    <!-- Google tag (gtag.js) para google analytics--> 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHF2CTMPBN"></script>
     <script> window.dataLayer = window.dataLayer || []; 
              function gtag(){dataLayer.push(arguments);} 
@@ -13,8 +12,7 @@
              
              gtag('config', 'G-RHF2CTMPBN');
     </script>
-
-
+    
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,11 +30,16 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <!-- <script src="js/seguridad.js"></script>-->
-    
+            <!-- <script src="js/seguridad.js"></script>-->
+    <style>
+        .info_solicitud_datos-expira {
+            border-bottom: none !important;
+        }
+    </style>
     
     <!--Codigo AdSense -->
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3356061878274425" crossorigin="anonymous"></script>
+    
 </head>
 
 <body id="page-top">
@@ -48,7 +51,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="profile_user.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -60,53 +63,23 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="profile_user.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Gestor de Administradores</span></a>
+                    <span>Perfil</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="pendientes.html">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pendientes</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="aceptadas.html">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Aceptadas</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="rechazadas.html">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Rechazadas</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="membresia_admin.html">
+                <a class="nav-link" href="membership_user.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Membresia</span></a>
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -194,9 +167,10 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-
+    
+    <!-- Script propios -->
     <script defer src="js/membresia.js"></script>
+
 </body>
 
 </html>

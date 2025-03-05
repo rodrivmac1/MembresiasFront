@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    
     
     <!-- Google tag (gtag.js) para google analytics--> 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHF2CTMPBN"></script>
@@ -12,7 +12,6 @@
              gtag('config', 'G-RHF2CTMPBN');
     </script>
     
-    
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,7 +19,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>REDMIS - Solicitudes pendientes</title>
+    <title>REDMIS - Solicitudes aceptadas</title>
 
     <!-- Custom styles for this template-->
     <link href="scss/sb-admin-2.css" rel="stylesheet">
@@ -43,7 +42,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_ad.html">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -55,7 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="dashboard_ad.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Gestor de Administradores</span></a>
             </li>
@@ -65,7 +64,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="pendientes.html">
+                <a class="nav-link" href="applicationsPending_ad.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Pendientes</span></a>
             </li>
@@ -74,8 +73,8 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="aceptadas.html">
+            <li class="nav-item active">
+                <a class="nav-link" href="applicationsAccepted_ad.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Aceptadas</span></a>
             </li>
@@ -84,8 +83,8 @@
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item active">
-                <a class="nav-link" href="rechazadas.html">
+            <li class="nav-item">
+                <a class="nav-link" href="applicationsRejected_ad.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Rechazadas</span></a>
             </li>
@@ -95,7 +94,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="membresia_admin.html">
+                <a class="nav-link" href="membership_ad.html">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Membresias</span></a>
             </li>
@@ -137,14 +136,14 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Solicitudes pendientes</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Solicitudes aceptadas</h1>
 
                     <div class="grid-solicitudes-pend" style="display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; ">
-                        
-                   <!--    <?php
-                            include "php/get_solicitudesR.php";
+                      <!--  
+                        <?php
+                            include "php/get_solicitudesA.php";
                         ?>
-                        --> 
+                    -->
                     </div>
 
                 </div>
