@@ -1,20 +1,26 @@
-const solicitud = document.querySelectorAll(".card-body")
 
-solicitud.forEach( (item) => {
-    item.addEventListener("click", () => {
-        const nom = item.parentNode.querySelector(".text-primary").id;
-        // Guardamos los valores en localStorage
-        localStorage.setItem("nombre", nom);
+document.addEventListener("DOMContentLoaded", () => {
+    // Delega cartas 
+    document.body.addEventListener("click", (event) => {
+        const cardBody = event.target.closest(".card-body");
+        if (cardBody) {
+            const textElement = cardBody.parentNode.querySelector(".text-primary");
+            if (textElement) {
+                localStorage.setItem("nombre", textElement.id);
+                window.location.href = "usuario.html";          
+            }
+        }
+    });
 
-        window.location.href = "usuario.php";
-    } )
-})
-
-const logout = document.querySelector('#logout-cont')
-logout.addEventListener('click', () => {
-     if (window.history.pushState) {
-        window.history.pushState(null, null, '/membresias/login.php');
-      }
-    localStorage.clear()
-    window.location.href = '/membresias/login.php'
-})
+    // Funcion Logout
+    const logoutButton = document.querySelector("#logout-cont");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", () => {
+            if (window.history.pushState) {
+                window.history.pushState(null, null, "/membresias/login.html");
+            }
+            localStorage.clear();
+            window.location.href = "/membresias/login.html";
+        });
+    }
+});

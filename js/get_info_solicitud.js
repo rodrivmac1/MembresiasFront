@@ -1,29 +1,59 @@
-const nombre = localStorage.getItem("nombre")
+document.addEventListener("DOMContentLoaded", async () => {
 
-const datos = new FormData()
+    const nombre = localStorage.getItem("nombre")       // Consigue nombre del localStorage
 
-datos.append("nombre", nombre)
-localStorage.removeItem("nombre")
+    if (!nombre) {
+        console.error("No se encontró el nombre en localStorage");
+        return;
+    }
 
-fetch("php/getInfoSolicitud.php", {method: "POST", body: datos})
-    .then(arrayResponse => arrayResponse.json())
-    .then(arrayResponse => {
-        console.log(arrayResponse);
-        document.querySelector(".nom-comp").innerHTML = arrayResponse.nombre + " " + arrayResponse.apellidos
-        document.querySelector(".genero").innerHTML = arrayResponse.genero
-        document.querySelector(".li").innerHTML = arrayResponse.lineaInv
-        document.querySelector(".pais").innerHTML = arrayResponse.pais
-        document.querySelector(".estado").innerHTML = arrayResponse.estado
-        document.querySelector(".uni").innerHTML = arrayResponse.universidad
-        document.querySelector(".email").innerHTML = arrayResponse.email
+    try{
+        const datos = new FormData();
+        datos.append("nombre", nombre)
+        localStorage.removeItem("nombre")
+
+        // Fetch from API (modificar de acuerdo a manejo de consumo)
+        const response = await fetch("php/getInfoSolicitud.php", {
+            method: "POST",
+            body: datos
+        });
+
+        const userInfo = await response.json();         //Cambiado de arrayResponse
+        console.log(userInfo); //Debugging en caso de info. erronea
+
+        // checar si hay datos suficientes
+        if (!userInfo || !userInfo.nombre) {
+            throw new Error("No se encontraron datos del usuario.");
+        }
+
+        // Mapeado de datos (Sustituye la asignacion de valores individual)
+        const fieldMap = {
+            ".nom-comp": `${userInfo.nombre} ${userInfo.apellidos}`,
+            ".genero": userInfo.genero,
+            ".li": userInfo.lineaInv,
+            ".pais": userInfo.pais,
+            ".estado": userInfo.estado,
+            ".uni": userInfo.universidad,
+            ".email": userInfo.email,
+        };
+
+        //Itera por cada atributo para modificar HTML
+        Object.entries(fieldMap).forEach(([selector, value]) => {
+            const element = document.querySelector(selector);
+            if (element) element.innerHTML = value;
+        });
+
+        // CV Link configuracion
+        const downloadCv = document.getElementById("cv");
+        if (downloadCv && userInfo.cv) {
+            downloadCv.href = `https://www.lumacad.com.mx/membresias/pdf/${userInfo.cv}`;
+            downloadCv.download = `CV ${userInfo.nombre} ${userInfo.apellidos}`;
+        }
+
+    } catch (error) {
+        console.error("Error al obtener la información de la solicitud:", error);
+    }
     
-        // const downloadCv = document.querySelector('.fa-download');
-        const downloadCv = document.getElementById('cv');
-        downloadCv.setAttribute('href', `https://www.lumacad.com.mx/membresias/pdf/${arrayResponse.cv}`)
-        downloadCv.setAttribute('download', `CV ${arrayResponse.nombre} ${arrayResponse.apellidos}`)
-    
-        
-    })
-
+});
 
 
