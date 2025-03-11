@@ -1,21 +1,55 @@
-const params = new URLSearchParams(window.location.search);
-const email = params.get('email');
 
-const datos = new FormData();
 
-datos.append("email", email);
+document.addEventListener("DOMContentLoaded", async () => {
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get("email");
+    
+    //Checar si email fue dado
+    if (!email) return console.error("No email provided in URL");
 
-const response = fetch("php/perfil_usuario.php", {method: "POST", body: datos});
-const arrayResponse = response.json();
+    // Abre Try para manejo de error
+    try {
+        const formData = new FormData();
+        formData.append("email", email);
 
-document.querySelector("#inputNombre").value = arrayResponse.nombre
-document.querySelector("#inputapellidos").value = arrayResponse.apellidos
-document.querySelector("#inputGenero").value = arrayResponse.genero
-document.querySelector("#inputEmail").value = arrayResponse.email
-document.querySelector("#inputPassword").value = arrayResponse.password
-document.querySelector("#inputUniversidad").value = arrayResponse.universidad
-document.querySelector("#inputEstado").value = arrayResponse.estado
-document.querySelector("#inputPais").value = arrayResponse.pais
-document.querySelector("#inputLI").value = arrayResponse.lineaInv
-document.querySelector("#inputImg").src = arrayResponse.img
-// document.querySelector("#inputCV").value = arrayResponse.cv
+        // API (Cambiar de acuerdo al manejo seleccionado)
+        const response = await fetch("php/perfil_usuario.php", { method: "POST", body: formData });
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+        const data = await response.json();
+        //En caso de que no haya respuesta
+        if (!data) throw new Error("Empty response from server");
+
+        // Llama a funcion en vez de mandar variables manual
+        populateProfileForm(data);
+    } catch (error) {
+        console.error("Error fetching user profile:", error);
+    }
+});
+
+function populateProfileForm(data) {
+    const fields = {
+        inputNombre: data.nombre,
+        inputapellidos: data.apellidos,
+        inputGenero: data.genero,
+        inputEmail: data.email,
+        inputPassword: data.password,
+        inputUniversidad: data.universidad,
+        inputEstado: data.estado,
+        inputPais: data.pais,
+        inputLI: data.lineaInv,
+    };
+
+    //itera por fields para asignar valores
+    Object.entries(fields).forEach(([id, value]) => {
+        const element = document.querySelector(`#${id}`);
+        if (element) element.value = value;
+    });
+
+    const imgElement = document.querySelector("#inputImg");
+    if (imgElement) imgElement.src = data.img;
+
+    // Comentado del codigo original
+    // const cvElement = document.querySelector("#inputCV");
+    // if (cvElement) cvElement.value = data.cv;
+}

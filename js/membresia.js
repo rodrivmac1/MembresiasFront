@@ -1,53 +1,53 @@
-const email = localStorage.getItem('email')
-const fechaActual = new Date()
-
-
-const datos = new FormData()
-datos.append("email", email)
-
-fetch("php/membresia.php", {method: "POST", body: datos})
-.then (arrayResponse => arrayResponse.json())
-.then (arrayResponse => {
-    const fechaArray = arrayResponse.vigencia.split("-")
-    const dia = fechaArray[2]
-    const mes = fechaArray[1]
-    const anio = fechaArray[0]
+document.addEventListener("DOMContentLoaded", () => {
+    const email = localStorage.getItem("email");
+    const fechaActual = new Date();
     
-    // Formatear la fecha al formato "dd/MM/YYYY"
-    const fechaFormateada = dia + "/" + mes + "/" + anio
-    
-    const partesFecha = fechaFormateada.split("/");
-    const fechaVigencia = new Date(partesFecha[2], partesFecha[1] - 1, partesFecha[0]);
-    document.querySelector('.info_solicitud_datos-status').innerText = arrayResponse.estatus;
-    document.querySelector('.info_solicitud_datos-expira').innerText = fechaFormateada;
-    
-    if (fechaActual <= fechaVigencia) {
-        if(arrayResponse.estatus == 'Aceptado'){
-            document.querySelector('.info_solicitud_datos-status').style.backgroundColor = '#23b55d'
-            document.querySelector('.info_solicitud_datos-expira').style.color = '#23b55d'
+    if (!email) return; // Termina si no se devuelve un dato
+
+    const datos = new FormData();
+    datos.append("email", email);
+
+    fetch("php/membresia.php", { method: "POST", body: datos })
+        .then(response => response.json())
+        .then(updateMembershipStatus(datos))       //En vez de escribir todo el codigo, se llama auna funcion
+        .catch(error => console.error("Error fetching membership data:", error));
+
+    function updateMembershipStatus(data) {
+        if (!data || !data.vigencia) return; // Asegura data es valida
+
+        const [anio, mes, dia] = data.vigencia.split("-").map(Number);      //Datos de fecha
+        const fechaVigencia = new Date(anio, mes - 1, dia);
+        
+        const formattedDate = fechaVigencia.toLocaleDateString("es-ES"); // formateado a dd//MM//YYYY
+        const statusElement = document.querySelector(".info_solicitud_datos-status");
+        const expiraElement = document.querySelector(".info_solicitud_datos-expira");
+
+        if (!statusElement || !expiraElement) return;
+
+        statusElement.innerText = data.estatus;
+        expiraElement.innerText = formattedDate;
+
+        //Color se cambio a checar estatus y fecha (Se vio que color de texto y fondo se compartian, esto se recomienda cambiar añadiendo otra variable de color o dejando fondo fijo)
+        let color;
+        if (fechaActual <= fechaVigencia) {
+            color = data.estatus === "Aceptado" ? "#23b55d"
+                  : data.estatus === "Pendiente" ? "#fb8500"
+                  : "#e63946";
+        } else {
+            color = "#e63946";
         }
-        else if(arrayResponse.estatus == 'Pendiente'){
-            document.querySelector('.info_solicitud_datos-status').style.backgroundColor = '#fb8500'
-            document.querySelector('.info_solicitud_datos-expira').style.color = '#fb8500'
-        }
-        else {
-            document.querySelector('.info_solicitud_datos-status').style.backgroundColor = '#e63946'
-            document.querySelector('.info_solicitud_datos-expira').style.color = '#e63946'
-        }
+
+        //Aplica color
+        statusElement.style.backgroundColor = color;
+        expiraElement.style.color = color;
     }
-    else {
-            document.querySelector('.info_solicitud_datos-status').style.backgroundColor = '#e63946'
-            document.querySelector('.info_solicitud_datos-expira').style.color = '#e63946'
-    }
+
+    // Logout 
+    document.querySelector("#logout-cont")?.addEventListener("click", () => {
+        window.history.pushState?.(null, null, "/membresias/login.html");
+        localStorage.clear();
+        window.location.href = "/membresias/login.html";
+    });
 });
-
-const logout = document.querySelector('#logout-cont')
-logout.addEventListener('click', () => {
-     if (window.history.pushState) {
-        window.history.pushState(null, null, '/membresias/login.php');
-      }
-    localStorage.clear()
-    window.location.href = '/membresias/login.php'
-})
 
 
