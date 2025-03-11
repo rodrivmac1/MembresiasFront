@@ -1,23 +1,15 @@
 (function ($) {
     'use strict';
-    /*==================================================================
-        [ Daterangepicker ]*/
-        
-    try {
-        var selectSimple = $('.js-select-simple');
-    
-        selectSimple.each(function () {
-            var that = $(this);
-            var selectBox = that.find('select');
-            var selectDropdown = that.find('.select-dropdown');
-            selectBox.select2({
-                dropdownParent: selectDropdown
-            });
+
+    $(document).ready(function () {
+        $('.js-select-simple').each(function () {
+            const selectBox = $(this).find('select');
+            const selectDropdown = $(this).find('.select-dropdown');
+            
+            if (selectBox.length && selectDropdown.length) {
+                selectBox.select2({ dropdownParent: selectDropdown });
+            }
         });
-    
-    } catch (err) {
-        console.log(err);
-    }
-    
+    });
 
 })(jQuery);

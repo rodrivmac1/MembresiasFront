@@ -1,93 +1,102 @@
-// const urlParams = new URLSearchParams(window.location.search);
-//const greetingValue = urlParams.get('email');
-// console.log(greetingValue); 
+document.addEventListener("DOMContentLoaded", () => {
+    //Elementos tipo const guardados en un array ya que se usan frecuentre en las diferentes funciones
+    const elements = {
+        inputs: document.querySelectorAll(".statusInput"),
+        editButton: document.querySelector(".info_perfil-btnEditar"),
+        saveButton: document.querySelector(".info_perfil-btnsEdit-aceptar"),
+        cancelButton: document.querySelector(".info_perfil-btnsEdit-cancelar"),
+        editContainer: document.querySelector(".info_perfil-btnsEdit"),
+        logoutButton: document.getElementById("logout-cont"),
+    };
 
-// var uri = window.location.toString();
-// if (uri.indexOf("?") > 0) {
-//     var clean_uri = uri.substring(0, uri.indexOf("?"));
-//     window.history.replaceState({}, document.title, clean_uri);
-// }
-
-const datos = new FormData()
-const email = localStorage.getItem('email')
-
-datos.append("email",email)
-
-fetch("php/perfil_usuario.php", {method: "POST", body: datos})
-.then(arrayResponse => arrayResponse.json())
-.then(arrayResponse => {
-    document.querySelector("#inputNombre").value = arrayResponse.nombre
-    document.querySelector("#inputApellidos").value = arrayResponse.apellidos
-    document.querySelector("#inputGenero").value = arrayResponse.genero
-    document.querySelector("#inputEmail").value = arrayResponse.email
-    document.querySelector("#inputPassword").value = arrayResponse.password
-    document.querySelector("#inputUniversidad").value = arrayResponse.universidad
-    document.querySelector("#inputEstado").value = arrayResponse.estado
-    document.querySelector("#inputPais").value = arrayResponse.pais
-    document.querySelector("#inputLI").value = arrayResponse.lineaInv
-});
+    //Fetch from API    (Modificar dependiendo el manejo de consumo ya que perfil_usuario solo regresa email)
+    async function fetchUserData() {
+        try {
+            const userId = localStorage.getItem("userId");
+            if (!userId) throw new Error("User ID not found");
+            
+            const response = await fetch(`php/perfil_usuario.php?userId=${userId}`);       //Esto con teoria en GET, dicho eso perfilUsario solo esta configurado en POST
+            if (!response.ok) throw new Error("Failed to fetch user data");
+            
+            const userData = await response.json();
+            populateUserData(userData);
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+        }
+    }
 
 
+    //Popula datos remplazando el fetch y la lista hecha (Dependiente del async fetchUserData y API):
+    function populateUserData(data) {
+        document.getElementById("inputNombre").value = data.nombre || "";
+        document.getElementById("inputApellidos").value = data.apellido || "";
+        document.getElementById("inputGenero").value = data.genero || "";
+        document.getElementById("inputPais").value = data.pais || "";
+        document.getElementById("inputEstado").value = data.estado || "";
+        document.getElementById("inputUniversidad").value = data.universidad || "";
+        document.getElementById("inputLI").value = data.lineaInvestigacion || "";
+        document.getElementById("inputEmail").value = data.email || "";
+    }
 
-const edit = document.querySelector('.info_perfil-btnEditar');
-const satusInput = document.querySelectorAll('.statusInput');
-const cancel = document.querySelector('.info_perfil-btnsEdit-cancelar');
-const btnsEdit = document.querySelector('.info_perfil-btnsEdit');
-const imgEdit = document.querySelector('.info_perfil_usuario-img-edit');
 
-const inputPassword = document.querySelector("#inputPassword")
+    //Función para mostrar o no los botones.
+    function toggleEditMode(enable) {
+        elements.inputs.forEach(input => input.disabled = !enable);
+        elements.editButton.style.display = enable ? "none" : "inline-block";
+        elements.editContainer.style.display = enable ? "flex" : "none";
+    }
 
-edit.addEventListener('click', () => {
-    satusInput.forEach(element => element.removeAttribute('disabled'));
-    btnsEdit.classList.remove("show");
-    imgEdit.classList.remove("show");
-    edit.classList.add("show");
-    inputPassword.setAttribute('type','text')
-});
+    async function saveUserData() {
+        try {
+            // Modificado a conseguir data de userId
+            const userId = localStorage.getItem("userId");
+            if (!userId) throw new Error("User ID not found");
+            
+            //Guarda datos en un const
+            const updatedData = {
+                userId,
+                nombre: document.getElementById("inputNombre").value,
+                apellido: document.getElementById("inputApellidos").value,
+                genero: document.getElementById("inputGenero").value,
+                pais: document.getElementById("inputPais").value,
+                estado: document.getElementById("inputEstado").value,
+                universidad: document.getElementById("inputUniversidad").value,
+                lineaInvestigacion: document.getElementById("inputLI").value,
+                email: document.getElementById("inputEmail").value,
+            };
+            
+            const response = await fetch("editarUsuario.php", {         //API (Modificar dependiendo del manejo de consumo)
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedData),
+            });
+            
+            //Manejo de fallo al guardar
+            if (!response.ok){
+                throw new Error("Failed to save user data");
+            } 
 
-cancel.addEventListener('click', () => {
-    satusInput.forEach(element => element.setAttribute('disabled', ''));
-    btnsEdit.classList.add("show");
-    imgEdit.classList.add("show");
-    edit.classList.remove("show");
-    inputPassword.setAttribute('type','password')
-});
+            alert("User data updated successfully");
+            toggleEditMode(false); //Oculta la vista de Edicion
 
-const aceptarEdit = document.querySelector('.info_perfil-btnsEdit-aceptar');
+        } catch (error) {   //Manejo de error
+            console.error("Error saving user data:", error);
+            alert("Error updating user data");
+        }
+    }
 
-aceptarEdit.addEventListener('click', () => {
-    const nombre = document.querySelector("#inputNombre").value
-    const apellidos = document.querySelector("#inputApellidos").value
-    const genero = document.querySelector("#inputGenero").value
-    const email = document.querySelector("#inputEmail").value
-    const password = document.querySelector("#inputPassword").value
-    const universidad = document.querySelector("#inputUniversidad").value
-    const estado = document.querySelector("#inputEstado").value
-    const pais = document.querySelector("#inputPais").value
-    const li = document.querySelector("#inputLI").value
+    function logout() {         //Manejo de logout,cambio a redirección de login.html
+        localStorage.clear();
+        window.location.href = "login.html";
+    }
+
+    // Event Listeners (Aqui se refencia todo)
+    elements.editButton.addEventListener("click", () => toggleEditMode(true));
+    elements.cancelButton.addEventListener("click", () => toggleEditMode(false));
+    elements.saveButton.addEventListener("click", saveUserData);
+    elements.logoutButton.addEventListener("click", logout);
     
-    const data = new FormData()
-    
-    data.append("nombre",nombre)
-    data.append("apellidos",apellidos)
-    data.append("genero",genero)
-    data.append("email",email)
-    data.append("password",password)
-    data.append("universidad",universidad)
-    data.append("li",li)
-    data.append("estado",estado)
-    data.append("pais",pais)
-    
-    fetch("php/editar_usuario.php", {method: "POST", body: data})
-    .then(response => response.json())
-    .then(response => location.reload())
-})
+    // Inicializa el API y todo el proceso
+    fetchUserData();
 
-const logout = document.querySelector('#logout-cont')
-logout.addEventListener('click', () => {
-     if (window.history.pushState) {
-        window.history.pushState(null, null, '/membresias/login.php');
-      }
-    localStorage.clear()
-    window.location.href = '/membresias/login.php'
-})
+});

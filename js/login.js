@@ -1,36 +1,52 @@
 
 
 
-(function($) {
-    "use strict"; // Start of use strict
-      // Clic form
-      
-        $("#login").on('click',async function(e) {
-            var email;
-            var pass;
+document.addEventListener("DOMContentLoaded", () => {       //Cambio de funcion a DOM
+    const loginButton = document.getElementById("login");
+    if (!loginButton) return; 
+
+    loginButton.addEventListener ("click", async () => {
+            const email = document.getElementById("exampleInputEmail").value.trim();   //Sustituye el  email	= $("#exampleInputEmail").val();
+            const password = document.getElementById("exampleInputEmail").value.trim();   //Sustituye el  pass	= $("#exampleInputPassword").val();
           
-            email	= $("#exampleInputEmail").val();
-            pass	= $("#exampleInputPassword").val();
-            console.log(email,pass)
-            const datos = new FormData();
+    
+            console.log(email,password)     // Eliminar al final pero muestra que datos se pasan para debugeo
 
-            datos.append("email", email);
-            datos.append("password", pass);
-            console.log(datos);
+            // En caso de que falte email o contraseña se manda este mensaje:
+            if (!email || !password) {
+              alert("Por favor, ingresa tu correo y contraseña.");
+              return;
+            }
 
-            const response 		= await fetch("php/login.php", {method: "POST", body: datos});
-            const arrayResponse = await response.json();
+            try {                   //Try añadido para manejo de errores
+              const datos = new FormData();            
+              datos.append("email", email);
+              datos.append("password", password);
+              console.log(datos);                          // Log los datos para debugueo, eliminar linea al final
 
-            if(arrayResponse.error) return alert("Email y/o contraseña incorrectos");
-            
-            localStorage.setItem('email',email)
-            localStorage.setItem('password',pass)
-            
-            if(arrayResponse.respuesta == "admin")
-                window.location.href = "https://lumacad.com.mx/membresias/";
-            else if(arrayResponse.respuesta == "usuario")
+              const response 		= await fetch("php/login.php", {      //Fetch igual
+                method: "POST", 
+                body: datos
+              });
+
+              const result = await response.json();             //cambiado a result para nombre mas corto
+              
+              if(result.error){
+                return alert("Email y/o contraseña incorrectos");   // Envia si no coinciden email y contraseña
+              } 
+              
+              sessionStorage.setItem('email', email);       //Cambiado a ssesionStorage para mejor seguridad
+              sessionStorage.setItem('passsword', password);      
+
+              if(result.respuesta == "admin"){            // Nota: No encontre en el intermediario algo llamado "respuesta" o "rol" por lo que se recomienda checar est if despues.
+                window.location.href = "https://lumacad.com.mx/membresias/"; 
+              } else if(result.respuesta == "usuario") {
                 window.location.href = "https://lumacad.com.mx/membresias/perfil_usuario.php";
+              }
+            }catch (error){
+              console.error("Error en el login:", error);
+              alert("Hubo un problema al iniciar sesión. Intenta de nuevo.");
+            }    
       });
-  })(jQuery); // End of use strict
-  
-localStorage.clear();
+  })
+   // strict eliminado (DOM lo contiene por default) y clear eliminado (redundante con el setItem)
