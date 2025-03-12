@@ -2,18 +2,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = localStorage.getItem("email");
     const fechaActual = new Date();
     
-    if (!email) return; // Termina si no se devuelve un dato
+    if (!email) {
+        console.warn("No email found in localStorage. User might not be logged in.");
+        return;
+    }
 
     const datos = new FormData();
     datos.append("email", email);
 
     fetch("php/membresia.php", { method: "POST", body: datos })
-        .then(response => response.json())
-        .then(updateMembershipStatus(datos))       //En vez de escribir todo el codigo, se llama auna funcion
+        .then(response => response.ok ? response.json() : Promise.reject("Invalid response"))
+        .then(updateMembershipStatus)       //En vez de escribir todo el codigo, se llama auna funcion
         .catch(error => console.error("Error fetching membership data:", error));
 
     function updateMembershipStatus(data) {
-        if (!data || !data.vigencia) return; // Asegura data es valida
+        if (!data || !data.vigencia) {
+            console.warn("No membership data received:", data);
+            return;
+        }
 
         const [anio, mes, dia] = data.vigencia.split("-").map(Number);      //Datos de fecha
         const fechaVigencia = new Date(anio, mes - 1, dia);

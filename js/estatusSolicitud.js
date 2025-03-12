@@ -16,11 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
             // API (modificar dependiendo de manejo de consumo)
             const response = await fetch("php/estatusSolicitud.php", {
                 method: "POST",
-                body: formData,
+                body: datos,
             });
 
             const result = await response.json();
-            if (result.error) throw new Error("No se pudo modificar el estatus");
+            if (result.error) {
+                console.error("Server Error:", result);
+                throw new Error("No se pudo modificar el estatus");
+            }
 
             return Swal.fire({
                 title: "Confirmación",
@@ -30,7 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
         } catch (error) {
-            alert(error.message);
+            console.error("Error:", error);
+            Swal.fire("Error", error.message, "error");
         }
 
     };
@@ -38,7 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Membresia rechazada
     document.getElementById("rechazar")?.addEventListener("click", async () => {
         const email = document.querySelector(".email")?.innerText;
-        if (email) await updateStatus(email, "Rechazado");
+        if (!email) return Swal.fire("Error", "No se encontró el email", "error");
+        await updateStatus(email, "Rechazado");
     });
 
     //Membresia aceptada y generacion de PDF
@@ -53,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const uni = document.querySelector(".uni")?.innerText;
 
             if (!email || !nomComp || !pais || !uni) {
-                throw new Error("Faltan datos del usuario.");
+                return Swal.fire("Error", "Faltan datos del usuario.", "error");
             }
 
             // Carga PDF y modifica
@@ -71,15 +76,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const pdfBytes = await pdfDoc.save();
             // Guarda PDF en Blob para mandar a carpeta
             const blobPdf = new Blob([pdfBytes], { type: "application/pdf" });
-            const rutaPdf = `../membresiasPDF/Membresia_${nomComp}.pdf`;
+            const formData = new FormData();
+            formData.append("email", email);
+            formData.append("estatus", "Aceptado");
+            formData.append("rutaPdf", `../membresiasPDF/Membresia_${nomComp}.pdf`);
+            formData.append("membresia", blobPdf, `Membresia_${nomComp}.pdf`);
 
-            await updateStatus(email, "Aceptado", {
-                rutaPdf,
-                membresia: blobPdf,
+            const response = await fetch("php/estatusSolicitud.php", {
+                method: "POST",
+                body: formData,  
             });
 
+            const result = await response.json();
+            if (result.error) throw new Error("No se pudo modificar el estatus");
+
+            Swal.fire("Confirmación", `La membresía del usuario ha sido ACEPTADA`, "success")
+                .then(() => window.location = "pendientes.html");
+
         } catch (error) {
-            alert("Error al generar el PDF: " + error.message);
+            console.error("Error al generar el PDF:", error);
+            Swal.fire("Error", `Error al generar el PDF: ${error.message}`, "error");
         }
     });
       

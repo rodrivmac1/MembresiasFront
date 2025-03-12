@@ -66,12 +66,32 @@ function getFormData() {
         alert("Por favor, completa todos los campos obligatorios.");
         return null;
     }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        alert("Por favor, ingresa un correo electrónico válido.");
+        return null;
+    }
 
     //Verificacion de contraseñas
     if (pass !== pass2) {
         alert("Las contraseñas no coinciden.");
         return null;
     }
+
+    //Verificaciond de formato (En teoria desde formulario se puede prevenir eso.)
+    if (fotoPerfil && !["image/png", "image/jpeg"].includes(fotoPerfil.type)) {
+        alert("El formato de la foto debe ser PNG o JPG.");
+        return null;
+    }
+    if (cv && cv.type !== "application/pdf") {
+        alert("El CV debe estar en formato PDF.");
+        return null;
+    }
+
+    /* if (pass.length < 8 || !/[A-Z]/.test(pass) || !/[0-9]/.test(pass)) {
+        alert("La contraseña debe tener al menos 8 caracteres, una mayúscula y un número.");
+        return null;
+    }       Esta funcion checa fuerza de contraseña, esta comentada porque es una sugerencia y esta a debatir el estandar*/    
 
     //Anexado a FormData
     const formData = new FormData();

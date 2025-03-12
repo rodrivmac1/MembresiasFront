@@ -6,8 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (cardBody) {
             const textElement = cardBody.parentNode.querySelector(".text-primary");
             if (textElement) {
-                localStorage.setItem("nombre", textElement.id);
-                window.location.href = "usuario.html";          
+                try {
+                    localStorage.setItem("nombre", textElement.id);
+                    window.location.href = "usuario.html";
+                } catch (error) {
+                    console.error("Error saving to localStorage:", error);
+                }        
             }
         }
     });
