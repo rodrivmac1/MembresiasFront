@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generar Constancia</title>
+  <!-- Enlazamos el archivo de estilos CSS -->
+  <link rel="stylesheet" href="css/constancia.css">
+  <!-- Se incluye la librería html2pdf.js desde un CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+  <!-- Formulario para que el usuario ingrese sus datos -->
+  <form id="userForm">
+    <h1>Generar Constancia</h1>
+    <div>
+      <label for="name">Nombre:</label>
+      <input type="text" id="name" name="name" placeholder="Ingrese su nombre" required>
+    </div>
+    <div>
+      <label for="surname">Apellidos:</label>
+      <input type="text" id="surname" name="surname" placeholder="Ingrese sus apellidos" required>
+    </div>
+    <div>
+      <label for="email">Correo electrónico:</label>
+      <input type="email" id="email" name="email" placeholder="usuario@ejemplo.com" required>
+    </div>
+    <button type="submit">Generar Constancia</button>
+    <!-- Botón para descargar la constancia como PDF (oculto inicialmente) -->
+    <button id="downloadPDF" class="hidden">Descargar como PDF</button>
+  </form>
+
+  <!-- Contenedor donde se mostrará la constancia generada -->
+  <div id="certificateContainer" class="hidden"></div>
+
+  <!-- Enlazamos el archivo de JavaScript -->
+  <script src="js/constancia.js"></script>
+</body>
+</html>
