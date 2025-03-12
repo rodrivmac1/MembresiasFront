@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             selectElement.value = data.respuesta[0].id;
         }
 
+        const errorContainer = document.querySelector(".error-message");
+        if (errorContainer) errorContainer.textContent = "No se pudo cargar la información.";
+
     } catch (error) {
         console.error("Error al obtener las membresías:", error);
     }

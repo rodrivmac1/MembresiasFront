@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             if (element) element.innerHTML = value;
         });
 
+        const errorContainer = document.querySelector(".error-message");
+        if (errorContainer) errorContainer.textContent = "No se pudo cargar la información.";
+
         // CV Link configuracion
         const downloadCv = document.getElementById("cv");
         if (downloadCv && userInfo.cv) {

@@ -11,8 +11,15 @@
 
     passButton.addEventListener("click", async () => {
         const email = emailInput.value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email) {
             alert("Por favor, ingresa un correo electrónico.");     // En caso de que no haya un correo
+            return;
+        }
+
+        
+        if (!emailPattern.test(email)) {
+            alert("Por favor, ingresa un correo electrónico válido.");
             return;
         }
 

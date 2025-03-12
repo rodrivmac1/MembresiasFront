@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {       //Cambio de funcion 
 
     loginButton.addEventListener ("click", async () => {
             const email = document.getElementById("exampleInputEmail").value.trim();   //Sustituye el  email	= $("#exampleInputEmail").val();
-            const password = document.getElementById("exampleInputEmail").value.trim();   //Sustituye el  pass	= $("#exampleInputPassword").val();
+            const password = document.getElementById("exampleInputPassword").value.trim();   //Sustituye el  pass	= $("#exampleInputPassword").val();
           
     
             console.log(email,password)     // Eliminar al final pero muestra que datos se pasan para debugeo
@@ -36,7 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {       //Cambio de funcion 
               } 
               
               sessionStorage.setItem('email', email);       //Cambiado a ssesionStorage para mejor seguridad
-              sessionStorage.setItem('passsword', password);      
+             
+              
+              if (!result || !result.respuesta) {
+                alert("Respuesta inesperada del servidor.");
+                return;
+            }
 
               if(result.respuesta == "admin"){            // Nota: No encontre en el intermediario algo llamado "respuesta" o "rol" por lo que se recomienda checar est if despues.
                 window.location.href = "https://lumacad.com.mx/membresias/"; 

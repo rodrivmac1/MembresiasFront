@@ -18,7 +18,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const data = await response.json();
         //En caso de que no haya respuesta
-        if (!data) throw new Error("Empty response from server");
+        if (!data || typeof data !== "object") {
+            console.error("Invalid data format received:", data);
+            return;
+        }
 
         // Llama a funcion en vez de mandar variables manual
         populateProfileForm(data);
@@ -47,7 +50,7 @@ function populateProfileForm(data) {
     });
 
     const imgElement = document.querySelector("#inputImg");
-    if (imgElement) imgElement.src = data.img;
+    if (imgElement) imgElement.src = data.img || "default-profile.png";
 
     // Comentado del codigo original
     // const cvElement = document.querySelector("#inputCV");
