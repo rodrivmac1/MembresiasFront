@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], 
+        input[type="password"], 
+        input[type="number"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results {
+            white-space: pre-wrap;
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 100px;
+            border: 1px solid #ddd;
+        }
+        .status {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+        }
+        .tab.active {
+            background-color: #fff;
+            border-bottom: 2px solid #4CAF50;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>API Test Dashboard</h1>
+    
+    <div class="container">
+        <div class="column">
+            <!-- Authentication Section -->
+            <div class="card" id="auth-section">
+                <h2>Autenticación</h2>
+                <div id="login-form">
+                    <div class="form-group">
+                        <label for="username">Usuario:</label>
+                        <input type="text" id="username" placeholder="Ingrese nombre de usuario" value="admin@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" placeholder="Ingrese contraseña" value="admin">
+                    </div>
+                    <div class="action-buttons">
+                        <button id="login-btn">Iniciar sesión</button>
+                        <button id="logout-btn">Cerrar sesión</button>
+                    </div>
+                    <div class="status" id="auth-status"></div>
+                </div>
+            </div>
+            
+            <!-- Members Section -->
+            <div class="card">
+                <h2>Miembros</h2>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="query">Consulta</div>
+                    <div class="tab" data-tab="create">Crear</div>
+                    <div class="tab" data-tab="update">Actualizar</div>
+                    <div class="tab" data-tab="delete">Eliminar</div>
+                </div>
+                
+                <!-- Query Tab -->
+                <div class="tab-content active" id="query-content">
+                    <div class="action-buttons">
+                        <button id="get-members-btn">Obtener todos los miembros</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="member-id">ID de Miembro:</label>
+                        <input type="number" id="member-id" placeholder="Ingrese ID del miembro">
+                        <button id="get-member-by-id-btn">Obtener miembro por ID</button>
+                    </div>
+                </div>
+                
+                <!-- Create Tab -->
+                <div class="tab-content" id="create-content">
+                    <h3>Agregar Nuevo Miembro</h3>
+                    <div class="form-group">
+                        <label for="new-nombre">Nombre:</label>
+                        <input type="text" id="new-nombre" value="José Rómulo">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-apellidos">Apellidos:</label>
+                        <input type="text" id="new-apellidos" value="Sosa Ortiz">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-genero">Género:</label>
+                        <select id="new-genero">
+                            <option value="Masculino" selected>Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-universidad">Universidad (ID):</label>
+                        <input type="number" id="new-universidad" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-estado">Estado (ID):</label>
+                        <input type="number" id="new-estado" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-paises">País (ID):</label>
+                        <input type="number" id="new-paises" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-email">Email:</label>
+                        <input type="email" id="new-email" value="josejose@mail.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">Contraseña:</label>
+                        <input type="password" id="new-password" value="elprincipe4020">
+                    </div>
+                    <button id="add-member-btn">Agregar Miembro</button>
+                </div>
+                
+                <!-- Update Tab -->
+                <div class="tab-content" id="update-content">
+                    <h3>Actualizar Miembro</h3>
+                    <div class="form-group">
+                        <label for="update-id">ID de Miembro a Actualizar:</label>
+                        <input type="number" id="update-id" placeholder="ID del miembro a actualizar">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-nombre">Nombre:</label>
+                        <input type="text" id="update-nombre" placeholder="Dejar en blanco para no actualizar">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-apellidos">Apellidos:</label>
+                        <input type="text" id="update-apellidos" placeholder="Dejar en blanco para no actualizar">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-genero">Género:</label>
+                        <select id="update-genero">
+                            <option value="">No actualizar</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-universidad">Universidad (ID):</label>
+                        <input type="number" id="update-universidad" placeholder="Dejar en blanco para no actualizar">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-estado">Estado (ID):</label>
+                        <input type="number" id="update-estado" placeholder="Dejar en blanco para no actualizar">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-paises">País (ID):</label>
+                        <input type="number" id="update-paises" placeholder="Dejar en blanco para no actualizar">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-email">Email:</label>
+                        <input type="email" id="update-email" placeholder="Dejar en blanco para no actualizar">
+                    </div>
+                    <div class="form-group">
+                        <label for="update-password">Contraseña:</label>
+                        <input type="password" id="update-password" placeholder="Dejar en blanco para no actualizar">
+                    </div>
+                    <button id="update-member-btn">Actualizar Miembro</button>
+                </div>
+                
+                <!-- Delete Tab -->
+                <div class="tab-content" id="delete-content">
+                    <h3>Eliminar Miembro</h3>
+                    <div class="form-group">
+                        <label for="delete-id">ID de Miembro a Eliminar:</label>
+                        <input type="number" id="delete-id" placeholder="ID del miembro a eliminar">
+                        <button id="delete-member-btn">Eliminar Miembro</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="column">
+            <!-- Results Section -->
+            <div class="card">
+                <h2>Resultados</h2>
+                <div id="results"></div>
+            </div>
+            
+            <!-- Auth Status Display -->
+            <div class="card">
+                <h2>Estado de Autenticación</h2>
+                <div id="auth-info"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
