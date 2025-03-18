@@ -1,5 +1,8 @@
 import loginService from './API/services/login.js';
 import membersService from './API/services/members.js';
+import statisticsService from './API/services/statistics.js';
+import membershipsService from './API/services/memberships.js';
+import membershipApplicationService from './API/services/membershipApplication.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     // Cache DOM elements
@@ -42,6 +45,28 @@ document.addEventListener('DOMContentLoaded', function() {
         deleteId: document.getElementById('delete-id'),
         deleteMemberBtn: document.getElementById('delete-member-btn'),
         
+        // Statistics elements
+        getStatisticsBtn: document.getElementById('get-statistics-btn'),
+        
+        // Memberships elements
+        getMembershipsBtn: document.getElementById('get-memberships-btn'),
+        newMembershipName: document.getElementById('new-membership-name'),
+        newMembershipType: document.getElementById('new-membership-type'),  // Changed from description to type
+        addMembershipBtn: document.getElementById('add-membership-btn'),
+        deleteMembershipId: document.getElementById('delete-membership-id'),
+        deleteMembershipBtn: document.getElementById('delete-membership-btn'),
+        
+        // Membership Applications elements
+        applicationMembershipId: document.getElementById('application-membership-id'),
+        applicationCv: document.getElementById('application-cv'),
+        applicationPhone: document.getElementById('application-phone'),
+        applicationComments: document.getElementById('application-comments'),
+        submitApplicationBtn: document.getElementById('submit-application-btn'),
+        processApplicationId: document.getElementById('process-application-id'),
+        acceptApplicationBtn: document.getElementById('accept-application-btn'),
+        rejectApplicationBtn: document.getElementById('reject-application-btn'),
+        rejectionReason: document.getElementById('rejection-reason'),
+        
         // Display elements
         results: document.getElementById('results'),
         authStatus: document.getElementById('auth-status'),
@@ -71,6 +96,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Members delete event listener
     elements.deleteMemberBtn.addEventListener('click', handleDeleteMember);
+    
+    // Statistics event listener
+    elements.getStatisticsBtn.addEventListener('click', handleGetStatistics);
+    
+    // Memberships event listeners
+    elements.getMembershipsBtn.addEventListener('click', handleGetAllMemberships);
+    elements.addMembershipBtn.addEventListener('click', handleAddMembership);
+    elements.deleteMembershipBtn.addEventListener('click', handleDeleteMembership);
+    
+    // Membership Applications event listeners
+    elements.submitApplicationBtn.addEventListener('click', handleSubmitApplication);
+    elements.acceptApplicationBtn.addEventListener('click', handleAcceptApplication);
+    elements.rejectApplicationBtn.addEventListener('click', handleRejectApplication);
     
     // Tab switching event listeners
     elements.tabs.forEach(tab => {
@@ -259,6 +297,147 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             displayMessage(`Error al eliminar miembro: ${getErrorMessage(error)}`, 'error');
             console.error('Delete member error:', error);
+        }
+    }
+    
+    // Statistics function
+    async function handleGetStatistics() {
+        try {
+            displayMessage('Obteniendo estadísticas...', 'info');
+            const statistics = await statisticsService.get();
+            displayResult('Statistics', statistics);
+            displayMessage('Estadísticas obtenidas correctamente', 'success');
+        } catch (error) {
+            displayMessage(`Error al obtener estadísticas: ${getErrorMessage(error)}`, 'error');
+            console.error('Statistics error:', error);
+        }
+    }
+    
+    // Memberships functions
+    async function handleGetAllMemberships() {
+        try {
+            displayMessage('Obteniendo membresías...', 'info');
+            const memberships = await membershipsService.get();
+            displayResult('All memberships', memberships);
+            displayMessage(`${memberships.length || 0} membresías obtenidas`, 'success');
+        } catch (error) {
+            displayMessage(`Error al obtener membresías: ${getErrorMessage(error)}`, 'error');
+            console.error('Get memberships error:', error);
+        }
+    }
+    
+    async function handleAddMembership() {
+        try {
+            const newMembership = {
+                nombre: elements.newMembershipName.value,
+                tipo: elements.newMembershipType.value  // Changed from descripcion to tipo
+            };
+            
+            displayMessage('Creando nueva membresía...', 'info');
+            console.log('Adding new membership:', newMembership);
+            
+            const response = await membershipsService.add(newMembership);
+            displayResult('Membership added', response);
+            displayMessage('Membresía creada correctamente', 'success');
+        } catch (error) {
+            displayMessage(`Error al crear membresía: ${getErrorMessage(error)}`, 'error');
+            console.error('Add membership error:', error);
+        }
+    }
+    
+    async function handleDeleteMembership() {
+        const id = elements.deleteMembershipId.value;
+        if (!id) {
+            displayMessage('Ingrese un ID de membresía válido', 'error');
+            return;
+        }
+        
+        try {
+            displayMessage(`Eliminando membresía con ID ${id}...`, 'info');
+            await membershipsService.delete(id);
+            displayResult(`Membership with ID ${id} deleted`, { success: true });
+            displayMessage('Membresía eliminada correctamente', 'success');
+        } catch (error) {
+            displayMessage(`Error al eliminar membresía: ${getErrorMessage(error)}`, 'error');
+            console.error('Delete membership error:', error);
+        }
+    }
+    
+    // Membership Application functions
+    async function handleSubmitApplication() {
+        try {
+            const application = {
+                MR_Membresias_id: parseInt(elements.applicationMembershipId.value),
+                cv: elements.applicationCv.value,
+                telefono: parseInt(elements.applicationPhone.value),
+                comentarios: elements.applicationComments.value
+            };
+            
+            // Validate required fields
+            if (!application.MR_Membresias_id) {
+                displayMessage('El ID de membresía es requerido', 'error');
+                return;
+            }
+            
+            if (!application.cv) {
+                displayMessage('El nombre del archivo CV es requerido', 'error');
+                return;
+            }
+            
+            if (!application.telefono) {
+                displayMessage('El número de teléfono es requerido', 'error');
+                return;
+            }
+            
+            displayMessage('Enviando solicitud de membresía...', 'info');
+            console.log('Submitting application:', application);
+            
+            const response = await membershipApplicationService.solicitar(application);
+            displayResult('Application submitted', response);
+            displayMessage('Solicitud enviada correctamente', 'success');
+        } catch (error) {
+            displayMessage(`Error al enviar solicitud: ${getErrorMessage(error)}`, 'error');
+            console.error('Submit application error:', error);
+        }
+    }
+    
+    async function handleAcceptApplication() {
+        const id = elements.processApplicationId.value;
+        if (!id) {
+            displayMessage('Ingrese un ID de solicitud válido', 'error');
+            return;
+        }
+        
+        try {
+            displayMessage(`Aceptando solicitud con ID ${id}...`, 'info');
+            const response = await membershipApplicationService.aceptar(id);
+            displayResult(`Application with ID ${id} accepted`, response || { success: true });
+            displayMessage('Solicitud aceptada correctamente', 'success');
+        } catch (error) {
+            displayMessage(`Error al aceptar solicitud: ${getErrorMessage(error)}`, 'error');
+            console.error('Accept application error:', error);
+        }
+    }
+    
+    async function handleRejectApplication() {
+        const id = elements.processApplicationId.value;
+        if (!id) {
+            displayMessage('Ingrese un ID de solicitud válido', 'error');
+            return;
+        }
+        
+        const reason = {
+            razon: elements.rejectionReason.value
+        };
+        
+        try {
+            displayMessage(`Rechazando solicitud con ID ${id}...`, 'info');
+            const response = await membershipApplicationService.rechazar(id, reason);
+            displayResult(`Application with ID ${id} rejected`, response || { success: true });
+            displayMessage('Solicitud rechazada correctamente', 'success');
+        } catch (error) {
+            displayMessage(`Error al rechazar solicitud: ${getErrorMessage(error)}`, 'error');
+            console.error('Reject application error:', error);
         }
     }
 

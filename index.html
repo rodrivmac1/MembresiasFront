@@ -255,6 +255,110 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Statistics Section -->
+            <div class="card">
+                <h2>Estadísticas</h2>
+                <div class="action-buttons">
+                    <button id="get-statistics-btn">Obtener Estadísticas</button>
+                </div>
+            </div>
+            
+            <!-- Memberships Section -->
+            <div class="card">
+                <h2>Membresías</h2>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="membership-list">Listar</div>
+                    <div class="tab" data-tab="membership-create">Crear</div>
+                    <div class="tab" data-tab="membership-delete">Eliminar</div>
+                </div>
+                
+                <!-- List Tab -->
+                <div class="tab-content active" id="membership-list-content">
+                    <div class="action-buttons">
+                        <button id="get-memberships-btn">Obtener todas las membresías</button>
+                    </div>
+                </div>
+                
+                <!-- Create Tab -->
+                <div class="tab-content" id="membership-create-content">
+                    <h3>Crear Nueva Membresía</h3>
+                    <div class="form-group">
+                        <label for="new-membership-name">Nombre:</label>
+                        <input type="text" id="new-membership-name" value="Membresía Ejecutiva">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-membership-type">Tipo:</label>
+                        <select id="new-membership-type">
+                            <option value="Premium">Premium</option>
+                            <option value="Ejecutiva" selected>Ejecutiva</option>
+                            <option value="Estándar">Estándar</option>
+                            <option value="Básica">Básica</option>
+                        </select>
+                    </div>
+                    <button id="add-membership-btn">Crear Membresía</button>
+                </div>
+                
+                <!-- Delete Tab -->
+                <div class="tab-content" id="membership-delete-content">
+                    <h3>Eliminar Membresía</h3>
+                    <div class="form-group">
+                        <label for="delete-membership-id">ID de Membresía a Eliminar:</label>
+                        <input type="number" id="delete-membership-id" placeholder="ID de la membresía">
+                        <button id="delete-membership-btn">Eliminar Membresía</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Membership Applications Section -->
+            <div class="card">
+                <h2>Solicitudes de Membresía</h2>
+                
+                <div class="tabs">
+                    <div class="tab active" data-tab="application-submit">Solicitar</div>
+                    <div class="tab" data-tab="application-process">Procesar</div>
+                </div>
+                
+                <!-- Submit Application Tab -->
+                <div class="tab-content active" id="application-submit-content">
+                    <h3>Solicitar Membresía</h3>
+                    <div class="form-group">
+                        <label for="application-membership-id">ID de Membresía:</label>
+                        <input type="number" id="application-membership-id" placeholder="ID de la membresía solicitada">
+                    </div>
+                    <div class="form-group">
+                        <label for="application-cv">CV:</label>
+                        <input type="text" id="application-cv" placeholder="Nombre del archivo CV" value="cv.pdf">
+                    </div>
+                    <div class="form-group">
+                        <label for="application-phone">Teléfono:</label>
+                        <input type="number" id="application-phone" placeholder="Número de teléfono">
+                    </div>
+                    <div class="form-group">
+                        <label for="application-comments">Comentarios:</label>
+                        <textarea id="application-comments" placeholder="Comentarios adicionales para la solicitud"></textarea>
+                    </div>
+                    <button id="submit-application-btn">Enviar Solicitud</button>
+                </div>
+                
+                <!-- Process Application Tab -->
+                <div class="tab-content" id="application-process-content">
+                    <h3>Procesar Solicitud</h3>
+                    <div class="form-group">
+                        <label for="process-application-id">ID de Solicitud:</label>
+                        <input type="number" id="process-application-id" placeholder="ID de la solicitud">
+                    </div>
+                    <div class="action-buttons">
+                        <button id="accept-application-btn">Aceptar</button>
+                        <button id="reject-application-btn">Rechazar</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="rejection-reason">Razón de Rechazo:</label>
+                        <textarea id="rejection-reason" placeholder="Razón del rechazo (solo si rechaza)"></textarea>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="column">
